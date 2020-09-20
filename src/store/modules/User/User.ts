@@ -6,9 +6,23 @@ import store from '@/store'
 export interface IUserState {
   token: string
   name: string
-  avatar: string
   introduction: string
-  roles: string[]
+  roles: string[],
+  details: { [key: string]: any }
+
+  avatar: string
+
+  // firstName: string,
+  // lastName: string,
+  // phoneNumber: string,
+  // company: string,
+  // address: {
+  //   street: string,
+  //   city: string,
+  //   zipCode: number,
+  //   country: string
+  // },
+  // website: string
 }
 
 @Module({ dynamic: true, store, name: 'user' })
@@ -18,6 +32,7 @@ class User extends VuexModule implements IUserState {
   public avatar = ''
   public introduction = ''
   public roles: string[] = []
+  public details = {}
 
   @Mutation
   private SET_TOKEN(token: string) {
@@ -42,6 +57,10 @@ class User extends VuexModule implements IUserState {
   @Mutation
   private SET_ROLES(roles: string[]) {
     this.roles = roles
+  }
+  @Mutation
+  private SET_USER_DETAILS(details: { [key: string]: any }) {
+    this.details = JSON.parse(JSON.stringify(details))
   }
 
   @Action
@@ -78,6 +97,7 @@ class User extends VuexModule implements IUserState {
     this.SET_NAME(name)
     this.SET_AVATAR(avatar)
     this.SET_INTRODUCTION(introduction)
+    this.SET_USER_DETAILS(data.user)
   }
 
   @Action

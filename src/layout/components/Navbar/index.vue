@@ -59,7 +59,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
-import { UserModule } from '@/store/modules/user'
+import { UserModule } from '@/store/modules/User/User'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 

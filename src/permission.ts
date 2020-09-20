@@ -3,7 +3,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Message } from 'element-ui'
 import { Route } from 'vue-router'
-import { UserModule } from '@/store/modules/user'
+import { UserModule } from '@/store/modules/User/User'
 
 NProgress.configure({ showSpinner: false })
 

@@ -74,7 +74,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
-import { UserModule } from '@/store/modules/user'
+import { UserModule } from '@/store/modules/User/User'
 import { isValidUsername } from '@/utils/validate'
 
 @Component({

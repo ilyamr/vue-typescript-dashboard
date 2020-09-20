@@ -7,6 +7,13 @@ export const getUserInfo = (data: any) =>
     data
   })
 
+export const updateUserInfo = (data: any) =>
+  request({
+    url: '/users/info',
+    method: 'post',
+    data
+  })
+
 export const login = (data: any) =>
   request({
     url: '/users/login',
