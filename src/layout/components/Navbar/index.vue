@@ -1,15 +1,17 @@
 <template>
   <div class="navbar">
-    <hamburger
-      id="hamburger-container"
-      :is-active="sidebar.opened"
-      class="hamburger-container"
-      @toggleClick="toggleSideBar"
-    />
-    <breadcrumb
-      id="breadcrumb-container"
-      class="breadcrumb-container"
-    />
+    <div class="left-menu">
+      <breadcrumb
+        id="breadcrumb-container"
+        class="breadcrumb-container"
+      />
+      <hamburger
+        id="hamburger-container"
+        :is-active="sidebar.opened"
+        class="hamburger-container"
+        @toggleClick="toggleSideBar"
+      />
+    </div>
     <div class="right-menu">
       <el-dropdown
         class="avatar-container right-menu-item hover-effect"
@@ -96,11 +98,15 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 80px;
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 3px 4px rgba(0,21,41,.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   .hamburger-container {
     line-height: 46px;

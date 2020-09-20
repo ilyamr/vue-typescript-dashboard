@@ -263,10 +263,10 @@
         </el-row>
       </el-tab-pane>
       <el-tab-pane
-        label="Config"
-        name="setting"
+        label="Settings"
+        name="settings"
       >
-        Config
+        Settings
       </el-tab-pane>
       <el-tab-pane
         label="User Management"

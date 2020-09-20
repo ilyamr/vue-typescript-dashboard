@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb
     class="app-breadcrumb"
-    separator="/"
+    separator="|"
   >
     <transition-group name="breadcrumb">
       <el-breadcrumb-item
