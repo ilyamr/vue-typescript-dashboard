@@ -298,7 +298,6 @@
 
 <script lang="ts">
 import '@/styles/_variables.scss'
-import '@/styles/_fonts.scss'
 
 import { mapState, mapGetters } from 'vuex'
 import { Component, Vue } from 'vue-property-decorator'
@@ -390,7 +389,7 @@ export default class extends Vue {
 
   background-color: #F5F8FA;
 
-  font-family: 'Source Sans Pro', serif;
+  // font-family: 'Source Sans Pro', serif;
 
 }
 
