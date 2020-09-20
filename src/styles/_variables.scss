@@ -2,13 +2,15 @@
 
 // Base color
 $blue:#324157;
-$light-blue:#3A71A8;
+$light-blue:#56688D;
 $red:#C03639;
 $pink: #E65D6E;
 $green: #30B08F;
 $tiffany: #4AB7BD;
 $yellow:#FEC171;
 $panGreen: #30B08F;
+
+$colorPrimary: #06BFFF;
 
 // Sidebar
 $sideBarWidth: 210px;
@@ -20,10 +22,17 @@ $menuText:#bfcbd9;
 $menuActiveText:#409EFF; // Also see settings.sidebarTextTheme
 
 // Login page
-$lightGray: #eee;
+$lightGray: #B1C1C8;
 $darkGray:#889aa4;
 $loginBg: #2d3a4b;
 $loginCursorColor: #fff;
+
+
+// User dashboard
+
+$bigCardBorderRadius: 10px;
+$smallCardBorderRadius: 6px;
+
 
 // The :export directive is the magic sauce for webpack
 // https://mattferderer.com/use-sass-variables-in-typescript-and-javascript

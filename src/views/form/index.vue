@@ -8,13 +8,14 @@
     </div>
 
     <el-row :gutter="32">
-      <el-col
+      <!-- <el-col
         :xs="24"
         :sm="12"
         :md="8"
         :lg="8"
         :xl="8"
-      >
+      > -->
+      <el-col :span="10">
         <el-card class="box-card">
           <div class="grid-content bg-purple" />
 
@@ -79,7 +80,7 @@
           <h2 class="info-header">
             Primary Contact
           </h2>
-          <p>Plese provide your contact information below. To change your contact info click 'Save'</p>
+          <p>Please provide your contact information below. To change your contact info click 'Save'</p>
 
           <el-form
             ref="userContactForm"
@@ -130,6 +131,7 @@
             <el-form-item>
               <el-button
                 type="primary"
+                round
                 @click="onSubmit"
               >
                 Save
@@ -139,34 +141,110 @@
         </el-card>
       </el-col>
 
-      <el-col :span="12">
-        <div class="grid-content bg-purple-light" />
+      <el-col :span="14">
         <h2 class="info-header">
           Usage
         </h2>
-        <div class="customer-info-card">
-          <p class="customer-info-card__header">
-            Scans
-          </p>
-          <p class="customer-info-card__info">
-            3451244
-          </p>
-          <p class="customer-info-card__plan-info">
-            Unlimited
-          </p>
-          <button class="btn btn-small btn-action">
-            Upgrade
-          </button>
+
+        <div class="customer-info-cards-wrapper">
+          <div class="customer-info-card">
+            <p class="customer-info-card__header">
+              Scans
+            </p>
+            <p class="customer-info-card__info">
+              3451244
+            </p>
+            <p class="customer-info-card__plan-info">
+              Unlimited
+            </p>
+            <el-button
+              type="primary"
+              size="small"
+              class="customer-info-card__button"
+              round
+            >
+              Upgrade
+            </el-button>
+          </div>
+
+          <div class="customer-info-card">
+            <p class="customer-info-card__header">
+              Scans
+            </p>
+            <p class="customer-info-card__info">
+              3451244
+            </p>
+            <p class="customer-info-card__plan-info">
+              Unlimited
+            </p>
+            <el-button
+              type="primary"
+              size="small"
+              class="customer-info-card__button"
+              round
+            >
+              Upgrade
+            </el-button>
+          </div>
+
+          <div class="customer-info-card">
+            <p class="customer-info-card__header">
+              Scans
+            </p>
+            <p class="customer-info-card__info">
+              3451244
+            </p>
+            <p class="customer-info-card__plan-info">
+              Unlimited
+            </p>
+            <el-button
+              type="primary"
+              size="small"
+              class="customer-info-card__button"
+              round
+            >
+              Upgrade
+            </el-button>
+          </div>
+
+          <div class="customer-info-card">
+            <p class="customer-info-card__header">
+              Scans
+            </p>
+            <p class="customer-info-card__info">
+              3451244
+            </p>
+            <p class="customer-info-card__plan-info">
+              Unlimited
+            </p>
+            <el-button
+              type="primary"
+              size="small"
+              class="customer-info-card__button"
+              round
+            >
+              Upgrade
+            </el-button>
+          </div>
         </div>
 
         <h2 class="info-header">
           Who are you?
         </h2>
         <p>For the best possible experience, please let us know who you are</p>
-        <div class="customer-type-wrapper">
-          <div class="customer-type-wrapper__icon" />
-          <div class="customer-type-wrapper__name">
-            Business
+
+        <div class="customer-type-container">
+          <div class="customer-type-card" v-for="i in 5" :key="i">
+            <!-- <el-card class="box-card box-card--small"> -->
+
+            <div class="customer-type-card__icon">
+              <i class="big-icon el-icon-suitcase" />
+            </div>
+            <div class="customer-type-card__name">
+              Business
+            </div>
+
+            <!-- </el-card> -->
           </div>
         </div>
       </el-col>
@@ -175,6 +253,8 @@
 </template>
 
 <script lang="ts">
+import '@/styles/_variables.scss'
+
 import { mapState, mapGetters } from 'vuex'
 import { Component, Vue } from 'vue-property-decorator'
 
@@ -259,17 +339,23 @@ export default class extends Vue {
 
 .form-container{
   padding: 28px 56px;
+
+  background-color: #F5F8FA;
 }
 
 .box-card{
-  border-radius: 10px;
+  border-radius: $bigCardBorderRadius;
   padding: 0 12px;
   padding-top: 0;
+
+  &--small {
+    border-radius: $smallCardBorderRadius;
+  }
 }
 
 .customer-info-block {
-  border: 1px solid #EBF1F4;
-  border-radius: 6px;
+  border: 1px solid $lightGray;;
+  border-radius: $smallCardBorderRadius;
   font-weight: 700;
 
   text-align: center;
@@ -278,12 +364,12 @@ export default class extends Vue {
   margin-bottom: 8px;
 
   &__header{
-    color: #B1C1C8;
+    color: $darkGray;
     text-transform: uppercase;
   }
 
   &__description {
-    color: #56688D;
+    color: $light-blue;
     font-size: 1.1em;
   }
 
@@ -307,9 +393,97 @@ export default class extends Vue {
   }
 }
 
+.customer-info-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .customer-info-card {
-  border: 1px solid #EBF1F4;
-  border-radius: 6px;
+  border: 1px solid $lightGray;
+  border-radius: $smallCardBorderRadius;
+  position: relative;
+
+  text-align: center;
+
+  min-width: 180px;
+  max-height: 240px;
+
+  padding-bottom: 16px;
+
+  margin-right: 32px;
+  margin-bottom: 16px;
+
+  &__header {
+    color: $darkGray;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    color: $light-blue;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__plan-info {
+    font-style: italic;
+    color: $darkGray;
+  }
+
+  &__button {
+    position: absolute;
+    bottom: -13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
+
+.customer-type-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.customer-type-card {
+  text-align: center;
+
+  background-color: #fff;
+  border-radius: $bigCardBorderRadius;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+
+  width: 140px;
+  height: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  text-transform: uppercase;
+  color: $light-blue;
+  font-weight: 700;
+
+  margin-right: 28px;
+  margin-bottom: 12px;
+
+  &__icon > i {
+    font-size: 2.5em;
+    color: $colorPrimary;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  // .el-card__body {
+  //   height: ;
+  // }
 }
 
 </style>
