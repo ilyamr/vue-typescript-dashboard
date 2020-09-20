@@ -9,8 +9,8 @@ export const getUserInfo = (data: any) =>
 
 export const updateUserInfo = (data: any) =>
   request({
-    url: '/users/info',
-    method: 'post',
+    url: '/users/' + data.username,
+    method: 'put',
     data
   })
 
