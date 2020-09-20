@@ -1,99 +1,108 @@
 <template>
-  <div class="app-container">
-    <el-form
-      ref="form"
-      :model="form"
-      label-width="120px"
-    >
-      <el-form-item label="Activity name">
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select
-          v-model="form.region"
-          placeholder="please select your zone"
+  <div class="form-container">
+
+    <div class="name-editor">
+     <h1>Egoditor GmbH</h1>
+      <!-- <div class="name-editor__button">
+        Edit
+      </div> -->
+    </div>
+
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <div class="grid-content bg-purple"></div>
+
+        <h2 class="info-header">Information</h2>
+
+          <div class="customer-info-block">
+            <p class="customer-info-block__header">
+              Customer ID
+            </p>
+            <p class="customer-info-block__description">
+              app-u-103
+            </p>
+          </div>
+
+        <h2 class="info-header">Primary Contact</h2>
+        <p>Plese provide your contact information below. To change your contact info click 'Save'</p>
+
+        <el-form
+          ref="form"
+          :model="form"
+          label-width="20px"
+          label-position="top"
         >
-          <el-option
-            label="Zone one"
-            value="shanghai"
-          />
-          <el-option
-            label="Zone two"
-            value="beijing"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker
-            v-model="form.date1"
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%;"
-          />
+          <el-form-item label="First Name">
+            <el-input v-model="form.firstName" />
+          </el-form-item>
+          <el-form-item label="Last Name">
+            <el-input v-model="form.lastName" />
+          </el-form-item>
+          <el-form-item label="Phone Number">
+            <el-input v-model="form.phoneNumber" />
+          </el-form-item>
+          <el-form-item label="Company">
+            <el-input v-model="form.company" />
+          </el-form-item>
+          <el-form-item label="Street">
+            <el-input v-model="form.street" />
+          </el-form-item>
+          <el-form-item label="City">
+            <el-input v-model="form.city" />
+          </el-form-item>
+          <el-form-item label="Zip Code">
+            <el-input v-model="form.zipCode" />
+          </el-form-item>
+          <el-form-item label="Country">
+            <el-select
+              v-model="form.country"
+              placeholder="please select your zone"
+            >
+              <el-option
+                label="Zone one"
+                value="shanghai"
+              />
+              <el-option
+                label="Zone two"
+                value="beijing"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Website">
+            <el-input v-model="form.website" />
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              type="primary"
+              @click="onSubmit"
+            >
+              Save
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="12">
+        <div class="grid-content bg-purple-light"></div>
+        <h2 class="info-header">Usage</h2>
+        <div class="customer-info-card">
+          <p class="customer-info-card__header">Scans</p>
+          <p class="customer-info-card__info">3451244</p>
+          <p class="customer-info-card__plan-info">Unlimited</p>
+          <button class="btn btn-small btn-action">Upgrade</button>
+        </div>
+
+
+        <h2 class="info-header">Who are you?</h2>
+        <p>For the best possible experience, please let us know who you are</p>
+        <div class="customer-type-wrapper">
+          <div class="customer-type-wrapper__icon"></div>
+          <div class="customer-type-wrapper__name">Business</div>
+        </div>
+
         </el-col>
-        <el-col
-          :span="2"
-          class="line"
-        >
-          -
-        </el-col>
-        <el-col :span="11">
-          <el-time-picker
-            v-model="form.date2"
-            type="fixed-time"
-            placeholder="Pick a time"
-            style="width: 100%;"
-          />
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery" />
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox
-            label="Online activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Promotion activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Offline activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Simple brand exposure"
-            name="type"
-          />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form">
-        <el-input
-          v-model="form.desc"
-          type="textarea"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          type="primary"
-          @click="onSubmit"
-        >
-          Create
-        </el-button>
-        <el-button @click="onCancel">
-          Cancel
-        </el-button>
-      </el-form-item>
-    </el-form>
+    </el-row>
+
+
   </div>
 </template>
 
@@ -118,18 +127,15 @@ export default class extends Vue {
   private onSubmit() {
     this.$message('submit!')
   }
-
-  private onCancel() {
-    this.$message({
-      message: 'cancel!',
-      type: 'warning'
-    })
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 .line {
   text-align: center;
+}
+
+.form-container{
+  padding: 28px 56px;
 }
 </style>

@@ -1,8 +1,8 @@
 const path = require('path')
-const name = 'Vue Typescript Admin'
+const name = 'Egoditor Dashboard'
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/', // TODO: Remember to change this to fit your need
+  publicPath: process.env.NODE_ENV === 'production' ? '/dashboard/' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
   pwa: {
     name: name
