@@ -7,253 +7,298 @@
       </div> -->
     </div>
 
-    <el-row :gutter="32">
-      <!-- <el-col
+    <el-tabs
+      v-model="activeName"
+      @tab-click="handleClick"
+    >
+      <el-tab-pane
+        label="Account"
+        name="account"
+      >
+        <el-row :gutter="32">
+          <!-- <el-col
         :xs="24"
         :sm="12"
         :md="8"
         :lg="8"
         :xl="8"
       > -->
-      <el-col :span="10">
-        <el-card class="box-card">
-          <div class="grid-content bg-purple" />
+          <el-col :span="10">
+            <el-card class="box-card">
+              <div class="grid-content bg-purple" />
 
-          <h2 class="info-header">
-            Information
-          </h2>
+              <h2 class="info-header">
+                Information
+              </h2>
 
-          <el-row :gutter="8">
-            <el-col :span="8">
-              <div class="customer-info-block">
-                <p class="customer-info-block__header">
-                  Customer ID
-                </p>
-                <p class="customer-info-block__description">
-                  {{ userContactForm.customerId }}
-                </p>
+              <el-row :gutter="8">
+                <el-col :span="8">
+                  <div class="customer-info-block">
+                    <p class="customer-info-block__header">
+                      Customer ID
+                    </p>
+                    <p class="customer-info-block__description">
+                      {{ userContactForm.customerId }}
+                    </p>
+                  </div>
+                </el-col>
+
+                <el-col :span="8">
+                  <div class="customer-info-block">
+                    <p class="customer-info-block__header">
+                      Signup Date
+                    </p>
+                    <p class="customer-info-block__description">
+                      {{ userContactForm.signupDate }}
+                    </p>
+                  </div>
+                </el-col>
+
+                <el-col :span="8">
+                  <div class="customer-info-block">
+                    <p class="customer-info-block__header">
+                      Account
+                    </p>
+                    <p class="customer-info-block__description">
+                      {{ userContactForm.accountType }}
+                    </p>
+                  </div>
+                </el-col>
+              </el-row>
+
+              <div class="customer-info-block customer-info-block--large">
+                <div class="customer-info-block__wrapper">
+                  <p class="customer-info-block__header">
+                    Login Email
+                  </p>
+                  <p class="customer-info-block__description">
+                    {{ userContactForm.email }}
+                  </p>
+                </div>
+                <div class="customer-info-block__links">
+                  <p class="customer-info-block__link">
+                    <a href="#">Password</a>
+                  </p>
+                  <p class="customer-info-block__link">
+                    <a href="#">Change Email</a>
+                  </p>
+                </div>
               </div>
-            </el-col>
 
-            <el-col :span="8">
-              <div class="customer-info-block">
-                <p class="customer-info-block__header">
-                  Signup Date
-                </p>
-                <p class="customer-info-block__description">
-                  {{ userContactForm.signupDate }}
-                </p>
-              </div>
-            </el-col>
+              <h2 class="info-header">
+                Primary Contact
+              </h2>
+              <p>Please provide your contact information below. To change your contact info click 'Save'</p>
 
-            <el-col :span="8">
-              <div class="customer-info-block">
-                <p class="customer-info-block__header">
-                  Account
-                </p>
-                <p class="customer-info-block__description">
-                  {{ userContactForm.accountType }}
-                </p>
-              </div>
-            </el-col>
-          </el-row>
-
-          <div class="customer-info-block customer-info-block--large">
-            <div class="customer-info-block__wrapper">
-              <p class="customer-info-block__header">
-                Login Email
-              </p>
-              <p class="customer-info-block__description">
-                {{ userContactForm.email }}
-              </p>
-            </div>
-            <div class="customer-info-block__links">
-              <p class="customer-info-block__link">
-                <a href="#">Password</a>
-              </p>
-              <p class="customer-info-block__link">
-                <a href="#">Change Email</a>
-              </p>
-            </div>
-          </div>
-
-          <h2 class="info-header">
-            Primary Contact
-          </h2>
-          <p>Please provide your contact information below. To change your contact info click 'Save'</p>
-
-          <el-form
-            ref="userContactForm"
-            v-loading="isLoading"
-            :model="userContactForm"
-            label-width="20px"
-            label-position="top"
-          >
-            <el-form-item label="First Name">
-              <el-input v-model="userContactForm.firstName" />
-            </el-form-item>
-            <el-form-item label="Last Name">
-              <el-input v-model="userContactForm.lastName" />
-            </el-form-item>
-            <el-form-item label="Phone Number">
-              <el-input v-model="userContactForm.phoneNumber" />
-            </el-form-item>
-            <el-form-item label="Company">
-              <el-input v-model="userContactForm.company" />
-            </el-form-item>
-            <el-form-item label="Street">
-              <el-input v-model="userContactForm.address.street" />
-            </el-form-item>
-            <el-form-item label="City">
-              <el-input v-model="userContactForm.address.city" />
-            </el-form-item>
-            <el-form-item label="Zip Code">
-              <el-input v-model="userContactForm.address.zipCode" />
-            </el-form-item>
-            <el-form-item label="Country">
-              <el-select
-                v-model="userContactForm.address.country"
-                placeholder="please select your zone"
+              <el-form
+                ref="userContactForm"
+                v-loading="isLoading"
+                :model="userContactForm"
+                label-width="20px"
+                label-position="top"
               >
-                <el-option
-                  label="Zone one"
-                  value="shanghai"
-                />
-                <el-option
-                  label="Zone two"
-                  value="beijing"
-                />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="Website">
-              <el-input v-model="userContactForm.website" />
-            </el-form-item>
-            <el-form-item>
-              <el-button
-                type="primary"
-                round
-                @click="onSubmit"
+                <el-form-item label="First Name">
+                  <el-input v-model="userContactForm.firstName" />
+                </el-form-item>
+                <el-form-item label="Last Name">
+                  <el-input v-model="userContactForm.lastName" />
+                </el-form-item>
+                <el-form-item label="Phone Number">
+                  <el-input v-model="userContactForm.phoneNumber" />
+                </el-form-item>
+                <el-form-item label="Company">
+                  <el-input v-model="userContactForm.company" />
+                </el-form-item>
+                <el-form-item label="Street">
+                  <el-input v-model="userContactForm.address.street" />
+                </el-form-item>
+                <el-form-item label="City">
+                  <el-input v-model="userContactForm.address.city" />
+                </el-form-item>
+                <el-form-item label="Zip Code">
+                  <el-input v-model="userContactForm.address.zipCode" />
+                </el-form-item>
+                <el-form-item label="Country">
+                  <el-select
+                    v-model="userContactForm.address.country"
+                    placeholder="please select your zone"
+                  >
+                    <el-option
+                      label="Zone one"
+                      value="shanghai"
+                    />
+                    <el-option
+                      label="Zone two"
+                      value="beijing"
+                    />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Website">
+                  <el-input v-model="userContactForm.website" />
+                </el-form-item>
+                <el-form-item>
+                  <el-button
+                    type="primary"
+                    round
+                    @click="onSubmit"
+                  >
+                    Save
+                  </el-button>
+                </el-form-item>
+              </el-form>
+            </el-card>
+          </el-col>
+
+          <el-col :span="14">
+            <h2 class="info-header">
+              Usage
+            </h2>
+
+            <div class="customer-info-cards-wrapper">
+              <div class="customer-info-card">
+                <p class="customer-info-card__header">
+                  Scans
+                </p>
+                <p class="customer-info-card__info">
+                  3451244
+                </p>
+                <p class="customer-info-card__plan-info">
+                  Unlimited
+                </p>
+                <el-button
+                  type="primary"
+                  size="small"
+                  class="customer-info-card__button"
+                  round
+                >
+                  Upgrade
+                </el-button>
+              </div>
+
+              <div class="customer-info-card">
+                <p class="customer-info-card__header">
+                  Scans
+                </p>
+                <p class="customer-info-card__info">
+                  3451244
+                </p>
+                <p class="customer-info-card__plan-info">
+                  Unlimited
+                </p>
+                <el-button
+                  type="primary"
+                  size="small"
+                  class="customer-info-card__button"
+                  round
+                >
+                  Upgrade
+                </el-button>
+              </div>
+
+              <div class="customer-info-card">
+                <p class="customer-info-card__header">
+                  Scans
+                </p>
+                <p class="customer-info-card__info">
+                  3451244
+                </p>
+                <p class="customer-info-card__plan-info">
+                  Unlimited
+                </p>
+                <el-button
+                  type="primary"
+                  size="small"
+                  class="customer-info-card__button"
+                  round
+                >
+                  Upgrade
+                </el-button>
+              </div>
+
+              <div class="customer-info-card">
+                <p class="customer-info-card__header">
+                  Scans
+                </p>
+                <p class="customer-info-card__info">
+                  3451244
+                </p>
+                <p class="customer-info-card__plan-info">
+                  Unlimited
+                </p>
+                <el-button
+                  type="primary"
+                  size="small"
+                  class="customer-info-card__button"
+                  round
+                >
+                  Upgrade
+                </el-button>
+              </div>
+            </div>
+
+            <h2 class="info-header">
+              Who are you?
+            </h2>
+            <p>For the best possible experience, please let us know who you are</p>
+
+            <div class="customer-type-container">
+              <div
+                v-for="i in 5"
+                :key="i"
+                class="customer-type-card"
               >
-                Save
-              </el-button>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </el-col>
+                <!-- <el-card class="box-card box-card--small"> -->
 
-      <el-col :span="14">
-        <h2 class="info-header">
-          Usage
-        </h2>
+                <div class="customer-type-card__icon">
+                  <i class="big-icon el-icon-suitcase" />
+                </div>
+                <div class="customer-type-card__name">
+                  Business
+                </div>
 
-        <div class="customer-info-cards-wrapper">
-          <div class="customer-info-card">
-            <p class="customer-info-card__header">
-              Scans
-            </p>
-            <p class="customer-info-card__info">
-              3451244
-            </p>
-            <p class="customer-info-card__plan-info">
-              Unlimited
-            </p>
-            <el-button
-              type="primary"
-              size="small"
-              class="customer-info-card__button"
-              round
-            >
-              Upgrade
-            </el-button>
-          </div>
-
-          <div class="customer-info-card">
-            <p class="customer-info-card__header">
-              Scans
-            </p>
-            <p class="customer-info-card__info">
-              3451244
-            </p>
-            <p class="customer-info-card__plan-info">
-              Unlimited
-            </p>
-            <el-button
-              type="primary"
-              size="small"
-              class="customer-info-card__button"
-              round
-            >
-              Upgrade
-            </el-button>
-          </div>
-
-          <div class="customer-info-card">
-            <p class="customer-info-card__header">
-              Scans
-            </p>
-            <p class="customer-info-card__info">
-              3451244
-            </p>
-            <p class="customer-info-card__plan-info">
-              Unlimited
-            </p>
-            <el-button
-              type="primary"
-              size="small"
-              class="customer-info-card__button"
-              round
-            >
-              Upgrade
-            </el-button>
-          </div>
-
-          <div class="customer-info-card">
-            <p class="customer-info-card__header">
-              Scans
-            </p>
-            <p class="customer-info-card__info">
-              3451244
-            </p>
-            <p class="customer-info-card__plan-info">
-              Unlimited
-            </p>
-            <el-button
-              type="primary"
-              size="small"
-              class="customer-info-card__button"
-              round
-            >
-              Upgrade
-            </el-button>
-          </div>
-        </div>
-
-        <h2 class="info-header">
-          Who are you?
-        </h2>
-        <p>For the best possible experience, please let us know who you are</p>
-
-        <div class="customer-type-container">
-          <div class="customer-type-card" v-for="i in 5" :key="i">
-            <!-- <el-card class="box-card box-card--small"> -->
-
-            <div class="customer-type-card__icon">
-              <i class="big-icon el-icon-suitcase" />
+                <!-- </el-card> -->
+              </div>
             </div>
-            <div class="customer-type-card__name">
-              Business
-            </div>
-
-            <!-- </el-card> -->
-          </div>
-        </div>
-      </el-col>
-    </el-row>
+          </el-col>
+        </el-row>
+      </el-tab-pane>
+      <el-tab-pane
+        label="Config"
+        name="setting"
+      >
+        Config
+      </el-tab-pane>
+      <el-tab-pane
+        label="User Management"
+        name="userManagement"
+      >
+        User Management
+      </el-tab-pane>
+      <el-tab-pane
+        label="White Label"
+        name="whiteLabel"
+      >
+        White Label
+      </el-tab-pane>
+      <el-tab-pane
+        label="API Keys"
+        name="apiKeys"
+      >
+        API Keys
+      </el-tab-pane>
+      <el-tab-pane
+        label="Billing"
+        name="billing"
+      >
+        Billing
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script lang="ts">
 import '@/styles/_variables.scss'
+import '@/styles/_fonts.scss'
 
 import { mapState, mapGetters } from 'vuex'
 import { Component, Vue } from 'vue-property-decorator'
@@ -267,6 +312,8 @@ import { IUserState, UserModule } from '@/store/modules/User/User'
 })
 export default class extends Vue {
   private isLoading: Boolean = false;
+
+  private activeName: string = 'account';
   // private userContactForm: Object = {};
 
   // private userDetails: IUserState = userContactForm;
@@ -333,6 +380,7 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
 .line {
   text-align: center;
 }
@@ -341,6 +389,9 @@ export default class extends Vue {
   padding: 28px 56px;
 
   background-color: #F5F8FA;
+
+  font-family: 'Source Sans Pro', serif;
+
 }
 
 .box-card{
