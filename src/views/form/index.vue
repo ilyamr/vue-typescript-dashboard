@@ -1,10 +1,13 @@
 <template>
   <div class="form-container">
-    <div class="name-editor">
-      <h1>Egoditor GmbH</h1>
-      <!-- <div class="name-editor__button">
+    <div class="company-name-container">
+      <h1 class="company-name-container__name">
+        Egoditor GmbH
+      </h1>
+      <div class="company-name-container__edit">
         Edit
-      </div> -->
+        <i class="el-icon-edit" />
+      </div>
     </div>
 
     <el-tabs
@@ -393,6 +396,34 @@ export default class extends Vue {
 
 }
 
+.company-name-container {
+
+  display: flex;
+  align-items: center;
+
+  &__name {
+    font-size: 2.75em;
+    color: $darkBlue;
+    font-weight: 800;
+  }
+
+  &__edit {
+    // margin-bottom: 16px;
+    margin-left: 20px;
+
+    color: $blue;
+    font-weight: 700;
+
+    i {
+      color: $colorPrimary;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
 .box-card{
   border-radius: $bigCardBorderRadius;
   padding: 0 12px;
@@ -531,9 +562,6 @@ export default class extends Vue {
     margin-bottom: 12px;
   }
 
-  // .el-card__body {
-  //   height: ;
-  // }
 }
 
 </style>

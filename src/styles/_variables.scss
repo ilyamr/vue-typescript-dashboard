@@ -3,6 +3,7 @@
 // Base color
 $darkBlue:#2B3757;
 $light-blue:#56688D;
+$blue: #1A74D1;
 $red:#C03639;
 $pink: #E65D6E;
 $green: #30B08F;
@@ -34,7 +35,9 @@ $loginCursorColor: #fff;
 $bigCardBorderRadius: 10px;
 $smallCardBorderRadius: 6px;
 
+// Tabs
 
+$--tab-font-size: 24px;  
 
 // The :export directive is the magic sauce for webpack
 // https://mattferderer.com/use-sass-variables-in-typescript-and-javascript

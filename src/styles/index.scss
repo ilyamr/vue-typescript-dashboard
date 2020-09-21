@@ -47,3 +47,18 @@ div:focus {
 .app-container {
   padding: 20px;
 }
+
+
+.el-tabs__item {
+  font-size: 18px;
+  font-weight: 600;
+  color: $darkGray;
+
+  &.is-active {
+    color: $blue;
+  }
+
+  &:hover {
+    color: $darkBlue;
+  }
+}
