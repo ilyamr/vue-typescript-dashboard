@@ -87,11 +87,26 @@ div:focus {
 
 .el-form-item {
   margin-bottom: 12px;
+
+
 }
 
 .el-select {
-  // width: 
+  width: 100%;
 }
+
+.el-form-item__label {
+  color: $darkGray;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+.el-input {
+  color: $darkBlue;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
 
 @media only screen and (max-width: 1024px) {
   .el-tabs__content {

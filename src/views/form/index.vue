@@ -194,7 +194,9 @@
                 <h2 class="info-header">
                   Who are you?
                 </h2>
-                <p>For the best possible experience, please let us know who you are</p>
+                <p class="description-text">
+                  For the best possible experience, please let us know who you are
+                </p>
 
                 <!-- TODO Create component, get types from API -->
                 <div class="customer-type-container">
