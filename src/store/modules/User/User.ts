@@ -8,7 +8,6 @@ import { IUser, defaultUserState } from '@/types/Users.ts'
 export interface IUserState {
   token: string
   name: string
-  introduction: string
   roles: string[],
   userState: { [key: string]: any }
 
@@ -20,7 +19,6 @@ export interface IUserState {
 class User extends VuexModule {
   public token = getToken() || ''
   public name = ''
-  public avatar = ''
   public introduction = ''
   public roles: string[] = []
   userState: IUser = defaultUserState();
@@ -33,16 +31,6 @@ class User extends VuexModule {
   @Mutation
   private SET_NAME(name: string) {
     this.name = name
-  }
-
-  @Mutation
-  private SET_AVATAR(avatar: string) {
-    this.avatar = avatar
-  }
-
-  @Mutation
-  private SET_INTRODUCTION(introduction: string) {
-    this.introduction = introduction
   }
 
   @Mutation
@@ -88,8 +76,6 @@ class User extends VuexModule {
     }
     this.SET_ROLES(roles)
     this.SET_NAME(name)
-    this.SET_AVATAR(avatar)
-    this.SET_INTRODUCTION(introduction)
     this.SET_USER_DETAILS(data.user)
   }
 
