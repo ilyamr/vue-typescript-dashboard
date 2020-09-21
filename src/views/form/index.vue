@@ -260,7 +260,7 @@ import { Component, Vue, Ref } from 'vue-property-decorator'
 
 import { IUser, defaultUserState } from '@/types/Users.ts'
 import { getUserInfo, updateUserInfo } from '@/api/users'
-import { IUserState, UserModule } from '@/store/modules/User/User'
+import { UserModule } from '@/store/modules/User/User'
 import PlanUsageCard from '@/components/Account/PlanUsageCard/index.vue'
 
 // TODO: API request
@@ -292,11 +292,9 @@ const COMPANY_DESCRIPTIONS = [
   components: {
     PlanUsageCard
   }
-  // computed: mapGetters(['token'])
 })
 export default class extends Vue {
-  // userContactForm: IUser = defaultUserState();
-  userContactForm: IUser = JSON.parse(JSON.stringify(this.$store.state.user.details));
+  userContactForm: IUser = JSON.parse(JSON.stringify(this.$store.state.user.userState));
 
   isLoading: Boolean = false;
   activeName: string = 'account';
@@ -310,20 +308,6 @@ export default class extends Vue {
     } catch (error) {
       this.$message(error)
     }
-  }
-
-  async fetchUserInfo() {
-    this.isLoading = true
-    const { data } = await getUserInfo({})
-    this.userContactForm = JSON.parse(JSON.stringify(data.user))
-    this.isLoading = false
-
-    console.log(data)
-  }
-
-  created() {
-    this.fetchUserInfo()
-    // this.userContactForm = JSON.parse(JSON.stringify(this.$store.state.user.details))
   }
 
   mounted() {
