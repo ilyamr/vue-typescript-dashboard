@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { IUser } from '@/types/Users.ts'
 
 export const getUserInfo = (data: any) =>
   request({
@@ -7,7 +8,7 @@ export const getUserInfo = (data: any) =>
     data
   })
 
-export const updateUserInfo = (data: any) =>
+export const updateUserInfo = (data: IUser) =>
   request({
     url: '/users/' + data.username,
     method: 'put',

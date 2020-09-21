@@ -258,6 +258,7 @@ import { mapState, mapGetters } from 'vuex'
 import { Form as ElForm, Input } from 'element-ui'
 import { Component, Vue, Ref } from 'vue-property-decorator'
 
+import { IUser, defaultUserState } from '@/types/Users.ts'
 import { getUserInfo, updateUserInfo } from '@/api/users'
 import { IUserState, UserModule } from '@/store/modules/User/User'
 import PlanUsageCard from '@/components/Account/PlanUsageCard/index.vue'
@@ -291,54 +292,18 @@ const COMPANY_DESCRIPTIONS = [
   components: {
     PlanUsageCard
   }
+  // computed: mapGetters(['token'])
 })
 export default class extends Vue {
-  // @Ref() userContactFormRef!: ElForm;
+  // userContactForm: IUser = defaultUserState();
+  userContactForm: IUser = JSON.parse(JSON.stringify(this.$store.state.user.details));
 
-  private isLoading: Boolean = false;
+  isLoading: Boolean = false;
+  activeName: string = 'account';
 
-  private activeName: string = 'account';
-  // private userContactForm: Object = {};
+  companyDescriptions = COMPANY_DESCRIPTIONS;
 
-  // private userDetails: IUserState = userContactForm;
-
-  private userContactForm = {
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    company: '',
-    address: {
-      street: '',
-      city: '',
-      zipCode: '',
-      country: ''
-    },
-    website: '',
-
-    customerId: '',
-    accountType: '',
-    signupDate: '',
-
-    usageStats: {
-      scansNumber: 0,
-      scansPlan: 0,
-
-      dynamicCodesNumber: 0,
-      dynamicCodesPlan: 0,
-
-      statucCodesNumber: 0,
-      staticCodesPlan: 0,
-
-      usersNumber: 0,
-      usersNumberPlan: 0
-    },
-
-    accountIndustry: ''
-  };
-
-  private companyDescriptions = COMPANY_DESCRIPTIONS;
-
-  private async onSubmit() {
+  async onSubmit() {
     try {
       await updateUserInfo(this.userContactForm)
       this.$message('Contact info updated!')
@@ -347,7 +312,7 @@ export default class extends Vue {
     }
   }
 
-  private async fetchUserInfo() {
+  async fetchUserInfo() {
     this.isLoading = true
     const { data } = await getUserInfo({})
     this.userContactForm = JSON.parse(JSON.stringify(data.user))
@@ -361,11 +326,9 @@ export default class extends Vue {
     // this.userContactForm = JSON.parse(JSON.stringify(this.$store.state.user.details))
   }
 
-  // computed: {
-  //   ...mapGetters(
-  //     userDetails: 'user/user.details'
-  //   )
-  // }
+  mounted() {
+    console.log('token: ', this.$store.state.user)
+  }
 }
 </script>
 

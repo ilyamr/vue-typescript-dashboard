@@ -1,7 +1,9 @@
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
-import { login, logout, getUserInfo } from '@/api/users'
+import { login, logout, getUserInfo, updateUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import store from '@/store'
+
+import { IUser, defaultUserState } from '@/types/Users.ts'
 
 export interface IUserState {
   token: string
@@ -26,13 +28,13 @@ export interface IUserState {
 }
 
 @Module({ dynamic: true, store, name: 'user' })
-class User extends VuexModule implements IUserState {
+class User extends VuexModule {
   public token = getToken() || ''
   public name = ''
   public avatar = ''
   public introduction = ''
   public roles: string[] = []
-  public details = {}
+  details: IUser = defaultUserState();
 
   @Mutation
   private SET_TOKEN(token: string) {
@@ -59,8 +61,10 @@ class User extends VuexModule implements IUserState {
     this.roles = roles
   }
   @Mutation
-  private SET_USER_DETAILS(details: { [key: string]: any }) {
+  private SET_USER_DETAILS(details: IUser) {
     this.details = JSON.parse(JSON.stringify(details))
+
+    console.log('SETT USER DETAILS: this: ', this)
   }
 
   @Action
@@ -99,6 +103,27 @@ class User extends VuexModule implements IUserState {
     this.SET_INTRODUCTION(introduction)
     this.SET_USER_DETAILS(data.user)
   }
+
+  // @Action
+  // public async UpdateUserInfo(data: IUser) {
+  //   if (this.token === '') {
+  //     throw Error('GetUserInfo: token is undefined!')
+  //   }
+  //   const { data } = await updateUserInfo(data)
+  //   if (!data) {
+  //     throw Error('Verification failed, please Login again.')
+  //   }
+  //   const { roles, name, avatar, introduction } = data.user
+  //   // roles must be a non-empty array
+  //   if (!roles || roles.length <= 0) {
+  //     throw Error('GetUserInfo: roles must be a non-null array!')
+  //   }
+  //   this.SET_ROLES(roles)
+  //   this.SET_NAME(name)
+  //   this.SET_AVATAR(avatar)
+  //   this.SET_INTRODUCTION(introduction)
+  //   this.SET_USER_DETAILS(user)
+  // }
 
   @Action
   public async LogOut() {
