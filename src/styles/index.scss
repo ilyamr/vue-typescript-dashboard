@@ -105,6 +105,9 @@ div:focus {
   font-size: 1.1em;
 }
 
+.el-tabs__item.is-top{
+  margin-bottom: 8px;
+}
 
 @media only screen and (max-width: 1024px) {
   .el-tabs__content {

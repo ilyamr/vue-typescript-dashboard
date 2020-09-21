@@ -175,6 +175,7 @@
                 :md="24"
                 :lg="16"
                 :xl="16"
+                class="usage-info-container"
               >
                 <h2 class="info-header">
                   Usage
@@ -190,25 +191,27 @@
                   />
                 </div>
 
-                <h2 class="info-header">
-                  Who are you?
-                </h2>
-                <p class="description-text">
-                  For the best possible experience, please let us know who you are
-                </p>
+                <div class="company-type-container">
+                  <h2 class="info-header">
+                    Who are you?
+                  </h2>
+                  <p class="description-text">
+                    For the best possible experience, please let us know who you are
+                  </p>
 
-                <!-- TODO Create component, get types from API -->
-                <div class="customer-type-container">
-                  <div
-                    v-for="item in companyDescriptions"
-                    :key="item.title"
-                    class="customer-type-card"
-                  >
-                    <div class="customer-type-card__icon">
-                      <i :class="'big-icon ' + item.icon" />
-                    </div>
-                    <div class="customer-type-card__name">
-                      {{ item.title }}
+                  <!-- TODO Create component, get types from API -->
+                  <div class="customer-type-container">
+                    <div
+                      v-for="item in companyDescriptions"
+                      :key="item.title"
+                      class="customer-type-card"
+                    >
+                      <div class="customer-type-card__icon">
+                        <i :class="'big-icon ' + item.icon" />
+                      </div>
+                      <div class="customer-type-card__name">
+                        {{ item.title }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -368,7 +371,7 @@ export default class extends Vue {
 
 .info-header {
   color: $darkBlue;
-  font-size: 1.8em;
+  font-size: 1.9em;
 
   &--no-margin-bottom {
     margin-bottom: 0;
@@ -456,54 +459,6 @@ export default class extends Vue {
   flex-wrap: wrap;
 }
 
-// .customer-info-card {
-//   border: 1px solid $lightGray;
-//   border-radius: $smallCardBorderRadius;
-//   position: relative;
-
-//   text-align: center;
-
-//   min-width: 180px;
-//   max-height: 240px;
-
-//   padding-bottom: 16px;
-
-//   margin-right: 32px;
-//   margin-bottom: 16px;
-
-//   &__header {
-//     color: $darkGray;
-//     font-weight: 700;
-//     text-transform: uppercase;
-//   }
-
-//   &__info {
-//     color: $light-blue;
-//     font-size: 24px;
-//     font-weight: 700;
-//   }
-
-//   &__plan-info {
-//     font-style: italic;
-//     color: $darkGray;
-//   }
-
-//   &__button {
-//     position: absolute;
-//     bottom: -13%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-
-//     font-weight: 700;
-//     text-transform: uppercase;
-//     font-size: 12px;
-//     padding-right: 10px;
-//     padding-left: 10px;
-//     padding-top: 6px;
-//     padding-bottom: 6px;
-//   }
-// }
-
 .btn-save {
   font-weight: 700;
   font-size: 1.25em;
@@ -549,6 +504,14 @@ export default class extends Vue {
     margin-bottom: 12px;
   }
 
+}
+
+.usage-info-container {
+  margin-top: 6px;
+}
+
+.company-type-container {
+  margin-top: 92px;
 }
 
 @media only screen and (max-width: 1024px) {
