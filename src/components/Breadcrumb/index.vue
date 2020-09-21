@@ -3,21 +3,17 @@
     class="app-breadcrumb"
     separator="|"
   >
-    <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadcrumbs"
-        :key="item.path"
-      >
-        <span
-          v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
-          class="no-redirect"
-        >{{ item.meta.title }}</span>
-        <a
-          v-else
-          @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
-      </el-breadcrumb-item>
-    </transition-group>
+    <a href="/#">
+      <div class="logo-container">
+        <div class="logo-container__icon" />
+        <div class="logo-container__logo">
+          QR Code Generator
+        </div>
+        <div class="logo-container__badge">
+          <span>PRO</span>
+        </div>
+      </div>
+    </a>
   </el-breadcrumb>
 </template>
 
@@ -99,5 +95,44 @@ export default class extends Vue {
     color: #97a8be;
     cursor: text;
   }
+}
+
+.logo-container {
+  padding: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+
+    margin-right: 8px;
+
+    background-image: url('/icons/logo-icon-white.svg');
+  }
+
+  &__logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: $darkBlue;
+  }
+
+  &__badge {
+    margin-bottom: 12px;
+    margin-left: 4px;
+
+  span {
+    background-color: $colorPrimary;
+    padding: 0 4px;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8em;
+  }
+
+  }
+
 }
 </style>

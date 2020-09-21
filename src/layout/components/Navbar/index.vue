@@ -5,6 +5,9 @@
         id="breadcrumb-container"
         class="breadcrumb-container"
       />
+      <div class="navbar__separator">
+        |
+      </div>
       <hamburger
         id="hamburger-container"
         :is-active="sidebar.opened"
@@ -13,6 +16,41 @@
       />
     </div>
     <div class="right-menu">
+      <router-link
+        to="#"
+        class="right-menu-link"
+      >
+        <navbar-icon
+          to="#"
+          icon-class="el-icon-bell"
+        />
+      </router-link>
+      <router-link
+        to="#"
+        class="right-menu-link"
+      >
+        <navbar-icon
+          to="#"
+          icon-class="el-icon-question"
+        />
+      </router-link>
+      <div class="navbar__separator">
+        |
+      </div>
+
+      <router-link
+        to="#"
+        class="right-menu-link user-account-wrapper"
+      >
+        <navbar-icon
+          to="#"
+          icon-class="el-icon-user"
+        />
+        <div class="user-account-wrapper__username">
+          Account
+        </div>
+      </router-link>
+
       <el-dropdown
         class="avatar-container right-menu-item hover-effect"
         trigger="click"
@@ -64,12 +102,14 @@ import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/User/User'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
+import NavbarIcon from '@/layout/components/Navbar/NavbarIcon.vue'
 
 @Component({
   name: 'Navbar',
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    NavbarIcon
   }
 })
 export default class extends Vue {
@@ -108,11 +148,21 @@ export default class extends Vue {
   align-items: center;
   justify-content: space-between;
 
+  &__separator {
+    margin: 0 8px;
+    color: $lightGray;
+  }
+
+  .left-menu {
+    display: flex;
+    align-items: center;
+  }
+
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
-    padding: 0 15px;
+    padding: 0 16px;
     cursor: pointer;
     transition: background .3s;
     -webkit-tap-highlight-color:transparent;
@@ -126,13 +176,35 @@ export default class extends Vue {
     float: left;
   }
 
+  .user-account-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+
+    &__username {
+      margin-left: 8px;
+      color: $light-blue;
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+  }
+
   .right-menu {
     float: right;
     height: 100%;
     line-height: 50px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &:focus {
       outline: none;
+    }
+
+    .right-menu-link {
+      margin-right: 24px;
     }
 
     .right-menu-item {
