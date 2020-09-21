@@ -100,7 +100,6 @@
                   ref="userContactFormRef"
                   v-loading="isLoading"
                   :model="userContactForm"
-                  :rules="userContactFormRules"
                   label-width="20px"
                   label-position="top"
                 >
@@ -337,73 +336,15 @@ export default class extends Vue {
     accountIndustry: ''
   };
 
-  public userContactFormRules = {
-    firstName: [
-      { required: true, message: 'Please enter first name', trigger: 'blur' },
-      { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-    ],
-
-    lastName: [
-      { required: true, message: 'Please enter last name', trigger: 'blur' },
-      { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-    ],
-
-    phoneNumber: [
-      { required: true, message: 'Please enter phone number', trigger: 'blur' },
-      { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-    ],
-    company: [
-      { required: true, message: 'Please enter your company name', trigger: 'blur' },
-      { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-    ],
-    address: {
-      street: [
-        { required: true, message: 'Please enter your street address', trigger: 'blur' },
-        { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-      ],
-      city: [
-        { required: true, message: 'Please enter your city', trigger: 'blur' },
-        { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-      ],
-      zipCode: [
-        { required: true, message: 'Please enter your zip code', trigger: 'blur' },
-        { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-      ],
-      country: [
-        { required: true, message: 'Please enter your country', trigger: 'blur' },
-        { min: 2, message: 'Length should be 2 characters minimum', trigger: 'blur' }
-      ]
-    },
-    website: ''
-  }
-
   private companyDescriptions = COMPANY_DESCRIPTIONS;
 
   private async onSubmit() {
-    // (this.$refs.userContactForm as ElForm).validate(async(valid: boolean) => {
-    //   if (valid) {
-    //     this.isLoading = true
-    //     await updateUserInfo(this.userContactForm)
-    //     setTimeout(() => {
-    //       this.isLoading = false
-    //     }, 0.5 * 1000)
-    //   } else {
-    //     return false
-    //   }
-    // })
-
-    let form: any = this.$refs.userContactFormRef
-
-    let validation = await form.validate( async(valid: Boolean) => {
-    console.log('valid: ', valid)
-        
-    })
-
-    console.log('form: ', form)
-    console.log('validation: ', validation)
-
-    await updateUserInfo(this.userContactForm)
-    this.$message('Contact info updated!')
+    try {
+      await updateUserInfo(this.userContactForm)
+      this.$message('Contact info updated!')
+    } catch (error) {
+      this.$message(error)
+    }
   }
 
   private async fetchUserInfo() {
