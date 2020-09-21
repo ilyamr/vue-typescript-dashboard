@@ -21,15 +21,14 @@
           label="Account"
           name="account"
         >
-          <el-row :gutter="32">
-            <!-- <el-col
-        :xs="24"
-        :sm="12"
-        :md="8"
-        :lg="8"
-        :xl="8"
-      > -->
-            <el-col :span="8">
+          <el-row :gutter="56">
+            <el-col
+              :xs="24"
+              :sm="24"
+              :md="24"
+              :lg="8"
+              :xl="8"
+            >
               <el-card class="box-card">
                 <h2 class="info-header">
                   Information
@@ -120,154 +119,175 @@
                   <el-form-item label="Street">
                     <el-input v-model="userContactForm.address.street" />
                   </el-form-item>
-                  <el-form-item label="City">
-                    <el-input v-model="userContactForm.address.city" />
-                  </el-form-item>
-                  <el-form-item label="Zip Code">
-                    <el-input v-model="userContactForm.address.zipCode" />
-                  </el-form-item>
+
+                  <el-row :gutter="20">
+                    <el-col :span="16">
+                      <el-form-item label="City">
+                        <el-input v-model="userContactForm.address.city" />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                      <el-form-item label="Zip Code">
+                        <el-input v-model="userContactForm.address.zipCode" />
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+
                   <el-form-item label="Country">
                     <el-select
                       v-model="userContactForm.address.country"
                       placeholder="please select your zone"
                     >
                       <el-option
-                        label="Zone one"
-                        value="shanghai"
+                        label="Germany"
+                        value="Germany"
                       />
                       <el-option
-                        label="Zone two"
-                        value="beijing"
+                        label="Spain"
+                        value="Spain"
+                      />
+                      <el-option
+                        label="Other"
+                        value="Other"
                       />
                     </el-select>
                   </el-form-item>
                   <el-form-item label="Website">
                     <el-input v-model="userContactForm.website" />
                   </el-form-item>
-                  <el-form-item>
+                  <el-form-item class="align-right">
                     <el-button
                       type="primary"
                       round
+                      class="btn-save"
                       @click="onSubmit"
                     >
-                      Save
+                      SAVE
                     </el-button>
                   </el-form-item>
                 </el-form>
               </el-card>
             </el-col>
 
-            <el-col :span="14">
-              <h2 class="info-header">
-                Usage
-              </h2>
+            <div class="usage-info-container">
+              <el-col
+                :xs="24"
+                :sm="24"
+                :md="24"
+                :lg="16"
+                :xl="16"
+              >
+                <h2 class="info-header">
+                  Usage
+                </h2>
 
-              <div class="customer-info-cards-wrapper">
-                <div class="customer-info-card">
-                  <p class="customer-info-card__header">
-                    Scans
-                  </p>
-                  <p class="customer-info-card__info">
-                    3451244
-                  </p>
-                  <p class="customer-info-card__plan-info">
-                    Unlimited
-                  </p>
-                  <el-button
-                    type="primary"
-                    size="small"
-                    class="customer-info-card__button"
-                    round
-                  >
-                    Upgrade
-                  </el-button>
-                </div>
-
-                <div class="customer-info-card">
-                  <p class="customer-info-card__header">
-                    Scans
-                  </p>
-                  <p class="customer-info-card__info">
-                    3451244
-                  </p>
-                  <p class="customer-info-card__plan-info">
-                    Unlimited
-                  </p>
-                  <el-button
-                    type="primary"
-                    size="small"
-                    class="customer-info-card__button"
-                    round
-                  >
-                    Upgrade
-                  </el-button>
-                </div>
-
-                <div class="customer-info-card">
-                  <p class="customer-info-card__header">
-                    Scans
-                  </p>
-                  <p class="customer-info-card__info">
-                    3451244
-                  </p>
-                  <p class="customer-info-card__plan-info">
-                    Unlimited
-                  </p>
-                  <el-button
-                    type="primary"
-                    size="small"
-                    class="customer-info-card__button"
-                    round
-                  >
-                    Upgrade
-                  </el-button>
-                </div>
-
-                <div class="customer-info-card">
-                  <p class="customer-info-card__header">
-                    Scans
-                  </p>
-                  <p class="customer-info-card__info">
-                    3451244
-                  </p>
-                  <p class="customer-info-card__plan-info">
-                    Unlimited
-                  </p>
-                  <el-button
-                    type="primary"
-                    size="small"
-                    class="customer-info-card__button"
-                    round
-                  >
-                    Upgrade
-                  </el-button>
-                </div>
-              </div>
-
-              <h2 class="info-header">
-                Who are you?
-              </h2>
-              <p>For the best possible experience, please let us know who you are</p>
-
-              <div class="customer-type-container">
-                <div
-                  v-for="i in 5"
-                  :key="i"
-                  class="customer-type-card"
-                >
-                  <!-- <el-card class="box-card box-card--small"> -->
-
-                  <div class="customer-type-card__icon">
-                    <i class="big-icon el-icon-suitcase" />
-                  </div>
-                  <div class="customer-type-card__name">
-                    Business
+                <div class="customer-info-cards-wrapper">
+                  <div class="customer-info-card">
+                    <p class="customer-info-card__header">
+                      Scans
+                    </p>
+                    <p class="customer-info-card__info">
+                      3451244
+                    </p>
+                    <p class="customer-info-card__plan-info">
+                      Unlimited
+                    </p>
+                    <el-button
+                      type="primary"
+                      size="small"
+                      class="customer-info-card__button"
+                      round
+                    >
+                      Upgrade
+                    </el-button>
                   </div>
 
-                <!-- </el-card> -->
+                  <div class="customer-info-card">
+                    <p class="customer-info-card__header">
+                      Scans
+                    </p>
+                    <p class="customer-info-card__info">
+                      3451244
+                    </p>
+                    <p class="customer-info-card__plan-info">
+                      Unlimited
+                    </p>
+                    <el-button
+                      type="primary"
+                      size="small"
+                      class="customer-info-card__button"
+                      round
+                    >
+                      Upgrade
+                    </el-button>
+                  </div>
+
+                  <div class="customer-info-card">
+                    <p class="customer-info-card__header">
+                      Scans
+                    </p>
+                    <p class="customer-info-card__info">
+                      3451244
+                    </p>
+                    <p class="customer-info-card__plan-info">
+                      Unlimited
+                    </p>
+                    <el-button
+                      type="primary"
+                      size="small"
+                      class="customer-info-card__button"
+                      round
+                    >
+                      Upgrade
+                    </el-button>
+                  </div>
+
+                  <div class="customer-info-card">
+                    <p class="customer-info-card__header">
+                      Scans
+                    </p>
+                    <p class="customer-info-card__info">
+                      3451244
+                    </p>
+                    <p class="customer-info-card__plan-info">
+                      Unlimited
+                    </p>
+                    <el-button
+                      type="primary"
+                      size="small"
+                      class="customer-info-card__button"
+                      round
+                    >
+                      Upgrade
+                    </el-button>
+                  </div>
                 </div>
-              </div>
-            </el-col>
+
+                <h2 class="info-header">
+                  Who are you?
+                </h2>
+                <p>For the best possible experience, please let us know who you are</p>
+
+                <div class="customer-type-container">
+                  <div
+                    v-for="i in 5"
+                    :key="i"
+                    class="customer-type-card"
+                  >
+                    <!-- <el-card class="box-card box-card--small"> -->
+
+                    <div class="customer-type-card__icon">
+                      <i class="big-icon el-icon-suitcase" />
+                    </div>
+                    <div class="customer-type-card__name">
+                      Business
+                    </div>
+
+                  <!-- </el-card> -->
+                  </div>
+                </div>
+              </el-col>
+            </div>
           </el-row>
         </el-tab-pane>
         <el-tab-pane
@@ -388,6 +408,10 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+.align-right {
+  text-align: right;
+}
 
 .line {
   text-align: center;
@@ -576,6 +600,11 @@ export default class extends Vue {
   }
 }
 
+.btn-save {
+  font-weight: 700;
+  font-size: 1.25em;
+}
+
 .customer-type-container {
   display: flex;
   flex-wrap: wrap;
@@ -611,6 +640,32 @@ export default class extends Vue {
     margin-bottom: 12px;
   }
 
+}
+
+@media only screen and (max-width: 1024px) {
+  .customer-type-container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .customer-info-cards-wrapper{
+    justify-content: center;
+    align-items: center;
+  }
+
+  .usage-info-container {
+    text-align: center;
+  }
+
+  .form-container.white {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+  }
+
+  .company-name-container__name {
+    font-size: 1.6em;
+  }
 }
 
 </style>

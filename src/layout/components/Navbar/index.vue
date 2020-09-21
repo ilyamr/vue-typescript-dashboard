@@ -15,7 +15,7 @@
         @toggleClick="toggleSideBar"
       />
     </div>
-    <div class="right-menu">
+    <div class="right-menu hidden-sm-and-down">
       <router-link
         to="#"
         class="right-menu-link"
@@ -61,6 +61,8 @@ import { UserModule } from '@/store/modules/User/User'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import NavbarIcon from '@/layout/components/Navbar/NavbarIcon.vue'
+
+import 'element-ui/lib/theme-chalk/display.css'
 
 @Component({
   name: 'Navbar',
