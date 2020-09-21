@@ -182,85 +182,13 @@
                 </h2>
 
                 <div class="customer-info-cards-wrapper">
-                  <div class="customer-info-card">
-                    <p class="customer-info-card__header">
-                      Scans
-                    </p>
-                    <p class="customer-info-card__info">
-                      3451244
-                    </p>
-                    <p class="customer-info-card__plan-info">
-                      Unlimited
-                    </p>
-                    <el-button
-                      type="primary"
-                      size="small"
-                      class="customer-info-card__button"
-                      round
-                    >
-                      Upgrade
-                    </el-button>
-                  </div>
-
-                  <div class="customer-info-card">
-                    <p class="customer-info-card__header">
-                      Scans
-                    </p>
-                    <p class="customer-info-card__info">
-                      3451244
-                    </p>
-                    <p class="customer-info-card__plan-info">
-                      Unlimited
-                    </p>
-                    <el-button
-                      type="primary"
-                      size="small"
-                      class="customer-info-card__button"
-                      round
-                    >
-                      Upgrade
-                    </el-button>
-                  </div>
-
-                  <div class="customer-info-card">
-                    <p class="customer-info-card__header">
-                      Scans
-                    </p>
-                    <p class="customer-info-card__info">
-                      3451244
-                    </p>
-                    <p class="customer-info-card__plan-info">
-                      Unlimited
-                    </p>
-                    <el-button
-                      type="primary"
-                      size="small"
-                      class="customer-info-card__button"
-                      round
-                    >
-                      Upgrade
-                    </el-button>
-                  </div>
-
-                  <div class="customer-info-card">
-                    <p class="customer-info-card__header">
-                      Scans
-                    </p>
-                    <p class="customer-info-card__info">
-                      3451244
-                    </p>
-                    <p class="customer-info-card__plan-info">
-                      Unlimited
-                    </p>
-                    <el-button
-                      type="primary"
-                      size="small"
-                      class="customer-info-card__button"
-                      round
-                    >
-                      Upgrade
-                    </el-button>
-                  </div>
+                  <PlanUsageCard
+                    v-for="item in userContactForm.usageStats"
+                    :key="item.id"
+                    :title="item.title"
+                    :description="item.description"
+                    :subtitle="item.subtitle"
+                  />
                 </div>
 
                 <h2 class="info-header">
@@ -268,22 +196,19 @@
                 </h2>
                 <p>For the best possible experience, please let us know who you are</p>
 
+                <!-- TODO Create component, get types from API -->
                 <div class="customer-type-container">
                   <div
-                    v-for="i in 5"
-                    :key="i"
+                    v-for="item in companyDescriptions"
+                    :key="item.title"
                     class="customer-type-card"
                   >
-                    <!-- <el-card class="box-card box-card--small"> -->
-
                     <div class="customer-type-card__icon">
-                      <i class="big-icon el-icon-suitcase" />
+                      <i :class="'big-icon ' + item.icon" />
                     </div>
                     <div class="customer-type-card__name">
-                      Business
+                      {{ item.title }}
                     </div>
-
-                  <!-- </el-card> -->
                   </div>
                 </div>
               </el-col>
@@ -335,8 +260,37 @@ import { getUserInfo, updateUserInfo } from '@/api/users'
 
 import { IUserState, UserModule } from '@/store/modules/User/User'
 
+import PlanUsageCard from '@/components/Account/PlanUsageCard/index.vue'
+
+// TODO: API request
+const COMPANY_DESCRIPTIONS = [
+  {
+    title: 'Business',
+    icon: 'el-icon-suitcase'
+  },
+  {
+    title: 'Agency',
+    icon: 'el-icon-house'
+  },
+  {
+    title: 'NonProfit',
+    icon: 'el-icon-star-off'
+  },
+  {
+    title: 'Educational',
+    icon: 'el-icon-collection'
+  },
+  {
+    title: 'Private',
+    icon: 'el-icon-coordinate'
+  }
+]
+
 @Component({
-  name: 'Form'
+  name: 'Form',
+  components: {
+    PlanUsageCard
+  }
 })
 export default class extends Vue {
   private isLoading: Boolean = false;
@@ -379,6 +333,8 @@ export default class extends Vue {
 
     accountIndustry: ''
   };
+
+  private companyDescriptions = COMPANY_DESCRIPTIONS;
 
   private async onSubmit() {
     await updateUserInfo(this.userContactForm)
@@ -552,53 +508,53 @@ export default class extends Vue {
   flex-wrap: wrap;
 }
 
-.customer-info-card {
-  border: 1px solid $lightGray;
-  border-radius: $smallCardBorderRadius;
-  position: relative;
+// .customer-info-card {
+//   border: 1px solid $lightGray;
+//   border-radius: $smallCardBorderRadius;
+//   position: relative;
 
-  text-align: center;
+//   text-align: center;
 
-  min-width: 180px;
-  max-height: 240px;
+//   min-width: 180px;
+//   max-height: 240px;
 
-  padding-bottom: 16px;
+//   padding-bottom: 16px;
 
-  margin-right: 32px;
-  margin-bottom: 16px;
+//   margin-right: 32px;
+//   margin-bottom: 16px;
 
-  &__header {
-    color: $darkGray;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+//   &__header {
+//     color: $darkGray;
+//     font-weight: 700;
+//     text-transform: uppercase;
+//   }
 
-  &__info {
-    color: $light-blue;
-    font-size: 24px;
-    font-weight: 700;
-  }
+//   &__info {
+//     color: $light-blue;
+//     font-size: 24px;
+//     font-weight: 700;
+//   }
 
-  &__plan-info {
-    font-style: italic;
-    color: $darkGray;
-  }
+//   &__plan-info {
+//     font-style: italic;
+//     color: $darkGray;
+//   }
 
-  &__button {
-    position: absolute;
-    bottom: -13%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+//   &__button {
+//     position: absolute;
+//     bottom: -13%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
 
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 12px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-}
+//     font-weight: 700;
+//     text-transform: uppercase;
+//     font-size: 12px;
+//     padding-right: 10px;
+//     padding-left: 10px;
+//     padding-top: 6px;
+//     padding-bottom: 6px;
+//   }
+// }
 
 .btn-save {
   font-weight: 700;
@@ -612,6 +568,7 @@ export default class extends Vue {
 
 .customer-type-card {
   text-align: center;
+  cursor: pointer;
 
   background-color: #fff;
   border-radius: $bigCardBorderRadius;
@@ -632,6 +589,10 @@ export default class extends Vue {
 
   margin-right: 28px;
   margin-bottom: 12px;
+
+  &:hover {
+    background-color: #f7f7f7;;
+  }
 
   &__icon > i {
     font-size: 2.5em;
