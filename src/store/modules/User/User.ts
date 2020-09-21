@@ -5,16 +5,6 @@ import store from '@/store'
 
 import { IUser, defaultUserState } from '@/types/Users.ts'
 
-export interface IUserState {
-  token: string
-  name: string
-  roles: string[],
-  userState: { [key: string]: any }
-
-  avatar: string
-
-}
-
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule {
   public token = getToken() || ''
