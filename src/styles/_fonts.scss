@@ -21,6 +21,13 @@
 
 @font-face {
   font-family: 'Source Sans Pro';
+  src: url('/fonts/Source_Sans_Pro/SourceSansPro-SemiBold.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
   src: url('/fonts/Source_Sans_Pro/SourceSansPro-BoldItalic.ttf');
   font-weight: 700;
   font-style: italic;

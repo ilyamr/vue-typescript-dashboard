@@ -62,3 +62,15 @@ div:focus {
     color: $darkBlue;
   }
 }
+
+.el-tabs__content {
+  padding: $dashboardPadding;
+  padding-left: $dashboardPaddingLeft;
+  padding-right: $dashboardPaddingRight;
+}
+
+.el-tabs__nav-scroll {
+  padding-left: $dashboardPaddingLeft;
+  padding-right: $dashboardPaddingRight;
+  background-color: $white;
+}
