@@ -21,11 +21,11 @@ import { UserModule } from '@/store/modules/User/User'
 })
 export default class extends Vue {
   get name() {
-    return UserModule.name
+    return UserModule.userState.name
   }
 
   get roles() {
-    return UserModule.roles
+    return UserModule.userState.roles
   }
 }
 </script>

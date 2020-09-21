@@ -259,7 +259,6 @@ import { Form as ElForm, Input } from 'element-ui'
 import { Component, Vue, Ref } from 'vue-property-decorator'
 
 import { IUser, defaultUserState } from '@/types/Users.ts'
-import { getUserInfo, updateUserInfo } from '@/api/users'
 import { UserModule } from '@/store/modules/User/User'
 import PlanUsageCard from '@/components/Account/PlanUsageCard/index.vue'
 
@@ -303,15 +302,11 @@ export default class extends Vue {
 
   async onSubmit() {
     try {
-      await updateUserInfo(this.userContactForm)
+      await UserModule.UpdateUserInfo(this.userContactForm)
       this.$message('Contact info updated!')
     } catch (error) {
       this.$message(error)
     }
-  }
-
-  mounted() {
-    console.log('token: ', this.$store.state.user)
   }
 }
 </script>

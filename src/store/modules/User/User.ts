@@ -8,9 +8,6 @@ import { IUser, defaultUserState } from '@/types/Users.ts'
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule {
   public token = getToken() || ''
-  public name = ''
-  public introduction = ''
-  public roles: string[] = []
   userState: IUser = defaultUserState();
 
   @Mutation
@@ -19,19 +16,12 @@ class User extends VuexModule {
   }
 
   @Mutation
-  private SET_NAME(name: string) {
-    this.name = name
-  }
-
-  @Mutation
   private SET_ROLES(roles: string[]) {
-    this.roles = roles
+    this.userState.roles = roles
   }
   @Mutation
   private SET_USER_DETAILS(userState: IUser) {
     this.userState = JSON.parse(JSON.stringify(userState))
-
-    console.log('SETT USER DETAILS: this: ', this)
   }
 
   @Action
@@ -65,30 +55,25 @@ class User extends VuexModule {
       throw Error('GetUserInfo: roles must be a non-null array!')
     }
     this.SET_ROLES(roles)
-    this.SET_NAME(name)
     this.SET_USER_DETAILS(data.user)
   }
 
-  // @Action
-  // public async UpdateUserInfo(data: IUser) {
-  //   if (this.token === '') {
-  //     throw Error('GetUserInfo: token is undefined!')
-  //   }
-  //   const { data } = await updateUserInfo(data)
-  //   if (!data) {
-  //     throw Error('Verification failed, please Login again.')
-  //   }
-  //   const { roles, name, avatar, introduction } = data.user
-  //   // roles must be a non-empty array
-  //   if (!roles || roles.length <= 0) {
-  //     throw Error('GetUserInfo: roles must be a non-null array!')
-  //   }
-  //   this.SET_ROLES(roles)
-  //   this.SET_NAME(name)
-  //   this.SET_AVATAR(avatar)
-  //   this.SET_INTRODUCTION(introduction)
-  //   this.SET_USER_DETAILS(user)
-  // }
+  @Action
+  public async UpdateUserInfo(userData: IUser) {
+    if (this.token === '') {
+      throw Error('GetUserInfo: token is undefined!')
+    }
+    const { data } = await updateUserInfo(userData)
+    if (!data) {
+      throw Error('Verification failed, please Login again.')
+    }
+    const { roles, name } = data.user
+    // roles must be a non-empty array
+    if (!roles || roles.length <= 0) {
+      throw Error('GetUserInfo: roles must be a non-null array!')
+    }
+    this.SET_USER_DETAILS(data.user)
+  }
 
   @Action
   public async LogOut() {
