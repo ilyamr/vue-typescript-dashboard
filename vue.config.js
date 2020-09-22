@@ -2,7 +2,7 @@ const path = require('path')
 const name = 'Egoditor Dashboard'
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/dashboard/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
   pwa: {
     name: name

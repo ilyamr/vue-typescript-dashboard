@@ -9,9 +9,7 @@
     "lint": "vue-cli-service lint",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit",
-    "postinstall": "npm run build",
-    "start": "node server.js"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.19.0",
