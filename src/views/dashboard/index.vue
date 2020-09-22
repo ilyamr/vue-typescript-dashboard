@@ -25,8 +25,8 @@
               :xs="24"
               :sm="24"
               :md="24"
-              :lg="8"
-              :xl="8"
+              :lg="9"
+              :xl="9"
             >
               <el-card class="box-card">
                 <h2 class="info-header">
@@ -173,8 +173,8 @@
                 :xs="24"
                 :sm="24"
                 :md="24"
-                :lg="16"
-                :xl="16"
+                :lg="15"
+                :xl="15"
                 class="usage-info-container"
               >
                 <h2 class="info-header">
